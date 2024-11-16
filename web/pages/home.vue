@@ -17,8 +17,17 @@
             text-footer-card="2" />
         </hgroup>
         <section
-          class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1">
-          <ChartComponent/>
+          class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1 mt-4">
+          <CardComponent title-card="Indice de gastos por mês">
+            <template #content-card>
+              <ChartComponent/>
+            </template>
+          </CardComponent>
+          <CardComponent>
+            <template #content-card>
+              <ChartComponent/>
+            </template>
+          </CardComponent>
           <!-- <div class="">
             <div class="card flex flex-col w-full">
               <div class="p-4 pb-3 main-top-border">
@@ -50,6 +59,7 @@
 import ContainerScreen from "@/screens/container.screen.vue";
 import CardBoxItem from "@/components/home/card_box_item.vue";
 import ChartComponent from "@/components/Chart.vue";
+import CardComponent from "@/components/Card.vue";
 
 //Icons
 import IconPressao from "@/assets/svgs/icon-pressao.svg"

@@ -6,17 +6,22 @@
                     {{ titleCard }}
                 </p>
             </div>
-            <slot name="content-card"></slot>
+            <slot name="content-card" />
         </div>
     </div>
 </template>
 
 <script setup>
-
+defineProps({
+    titleCard: {
+        type: String,
+        default: () => '',
+    }
+})
 </script>
 
 <style>
-.card{
+.card {
     border: 1px solid rgba(28, 19, 9, 0.05);
     border-radius: 12px;
     vertical-align: top;

@@ -2,7 +2,7 @@
     <ClientOnly>
         <div id="chart">
             <VueApexCharts
-                type="bar"
+                type="line"
                 height="350"
                 :options="tableData"
                 :series="series"
