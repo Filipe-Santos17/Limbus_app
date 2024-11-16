@@ -4,28 +4,24 @@
             {{ titleLabel }}
         </label>
         <input type="text" :name="idInput" :id="idInput" :placeholder="pText" class="input-login-class">
-        <slot name="bottom-input"/>
+        <slot name="bottom-input" />
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-    props: {
-        titleLabel: {
-            type: String,
-            required: true
-        },
-        idInput: {
-            type: String,
-            required: true
-        },
-        pText: {
-            type: String,
-            required: false,
-            default: "",
-        }
+<script setup lang="ts">
+defineProps({
+    titleLabel: {
+        type: String,
+        required: true
+    },
+    idInput: {
+        type: String,
+        required: true
+    },
+    pText: {
+        type: String,
+        required: false,
+        default: "",
     }
 })
 </script>
@@ -33,7 +29,6 @@ export default defineComponent({
 <style scoped>
 .label-login-class {
     @apply text-sm text-[#495057] font-medium;
-    /*font-inter */
 }
 
 .input-login-class {

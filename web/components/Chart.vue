@@ -1,19 +1,33 @@
 <template>
     <ClientOnly>
         <div id="chart">
-            <VueApexCharts
-                type="line"
-                height="350"
-                :options="tableData"
-                :series="series"
+            <VueApexCharts 
+                :type="typeChart" 
+                height="350" 
+                :options="tableData" 
+                :series="series" 
             />
         </div>
     </ClientOnly>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import VueApexCharts from "vue3-apexcharts";
-import createTableProps from '@/utils/dataTable';
+import ChartDataProvider from '@/utils/dataTableProvider';
 
-const { series, tableData } = createTableProps()
+const chartDataProvider = new ChartDataProvider();
+
+if (!chartDataProvider) {
+    throw new Error('No ChartDataProvider found.');
+}
+
+const series = chartDataProvider.getSeries();
+const tableData = chartDataProvider.getChartOptions();
+
+defineProps({
+    typeChart: {
+        type: String,
+        default: () => 'line'
+    }
+})
 </script>
