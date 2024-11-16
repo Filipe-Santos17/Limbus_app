@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -13,8 +15,12 @@ export default {
   theme: {
     extend: {
       colors:{
-        "yellow-limbus":"#FF9B32",
+        "yellow-limbus-white":"#FF9B32",
+        "yellow-limbus-dark":"#F4801F",
+        "white-bg":"#FAFAFA",
         "neutral-10":"#E9ECEF",
+        "neutral-20":"#61686D",
+        "black-20":"#1C1309",
       },
       screens: {
         xl: { max: '1920px' },
@@ -23,7 +29,10 @@ export default {
         md: { max: '1024px' },
         sm: { max: '600px' },
       },
+      width:{
+        "sidebar-width":"5rem"
+      }
     },
   },
-  plugins: [],
+  plugins: []
 }

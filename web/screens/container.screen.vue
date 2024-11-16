@@ -1,10 +1,15 @@
 <template>
     <section class="page-container">
+        <HeaderComponent/>
         <div class="content-container">
             <slot name="content"/>
         </div>
     </section>
 </template>
+
+<script setup>
+import HeaderComponent from "@/components/Header.vue";
+</script>
 
 <style>
 .page-container{

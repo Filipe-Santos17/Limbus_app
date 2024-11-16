@@ -2,20 +2,20 @@
     <div class="card flex flex-col w-full">
         <div class="p-4 pb-3 main-top-border">
             <div class="flex w-full justify-between items-center">
-                <p class="text-caps-2 uppercase text-neutral-60">
+                <p class="text-caps-2 uppercase text-neutral-20">
                     {{ textHeaderCard }}
                 </p>
-                <img class="w-6 h-6" :name="`svguse:/icons.svg#${nameIcon}`"/>
+                <img class="w-6 h-6" :src="icon"/>
             </div>
-            <h5 class="text-title-2 text-primary-pure">
+            <h5 class="text-title-2 text-yellow-limbus-dark">
                 {{ textMainValue ? textMainValue : '---' }}
             </h5>
         </div>
         <div class="p-4 pt-3">
-            <h6 class="text-headline-3 text-neutral-100">
+            <h6 class="text-headline-3 text-black-20">
                 {{ textFooterCard ? textFooterCard : '---' }}
             </h6>
-            <p class="text-paragraph-3 text-neutral-60">Último mês</p>
+            <p class="text-paragraph-3 text-neutral-20">Último mês</p>
         </div>
     </div>
 </template>
@@ -33,7 +33,7 @@ export default defineComponent({
             type: String,
             default: () => '',
         },
-        nameIcon: {
+        icon: {
             type: String,
             default: () => '',
         },
@@ -41,7 +41,7 @@ export default defineComponent({
             type: String,
             default: () => '',
         },
-    }
+    },
 })
 </script>
 

@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-caps-2 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 166.667%;
+    letter-spacing: 0.03rem;
+    font-family: Quicksand, sans-serif;
+}
+
+.text-title-2 {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 137.5%;
+    letter-spacing: -0.02rem;
+    font-family: Quicksand, sans-serif;
+}
+
+.text-headline-3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 157.143%;
+    letter-spacing: -0.02rem;
+    font-family: Quicksand, sans-serif;
+}
+
+.text-paragraph-3 {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 166.667%;
+    letter-spacing: -0.02rem;
+    font-family: Quicksand, sans-serif;
+}
