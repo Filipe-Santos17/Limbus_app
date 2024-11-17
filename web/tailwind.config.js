@@ -15,12 +15,13 @@ export default {
   theme: {
     extend: {
       colors:{
-        "yellow-limbus-white":"#FF9B32",
-        "yellow-limbus-dark":"#F4801F",
-        "white-bg":"#FAFAFA",
+        "black-10":"#00070F",
+        "black-20":"#1C1309",
         "neutral-10":"#E9ECEF",
         "neutral-20":"#61686D",
-        "black-20":"#1C1309",
+        "white-bg":"#FAFAFA",
+        "yellow-limbus-dark":"#F4801F",
+        "yellow-limbus-white":"#FF9B32",
       },
       screens: {
         xl: { max: '1920px' },
@@ -30,7 +31,8 @@ export default {
         sm: { max: '600px' },
       },
       width:{
-        "sidebar-width":"5rem"
+        "sidebar-width":"5.5rem",
+        "sidebar-width-open":"21.25rem"
       }
     },
   },

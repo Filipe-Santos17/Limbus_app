@@ -1,4 +1,5 @@
 <template>
+    <Sidebar :sidebar-options="sidebarOptions"/>
     <section class="page-container">
         <HeaderComponent/>
         <div class="content-container">
@@ -8,7 +9,31 @@
 </template>
 
 <script setup>
+import Sidebar from "@/components/Sidebar.vue";
 import HeaderComponent from "@/components/Header.vue";
+
+//Icons
+import IconHome from "@/assets/svgs/sidebar/icon-home.svg"
+import IconDash from "@/assets/svgs/sidebar/icon-dashboard.svg"
+import IconUser from "@/assets/svgs/sidebar/icon-user.svg"
+
+const sidebarOptions = [
+    {
+        text: "Home",
+        link: "home",
+        img: IconHome
+    },
+    {
+        text: "Dashboards",
+        link: "dashboards",
+        img: IconDash
+    },
+    {
+        text: "Users",
+        link: "users",
+        img: IconUser
+    }
+]
 </script>
 
 <style>

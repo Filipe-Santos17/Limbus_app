@@ -45,10 +45,10 @@ import CardComponent from "@/components/Card.vue";
 import TableComponent from "@/components/Table.vue";
 
 //Icons
-import IconPressao from "@/assets/svgs/icon-pressao.svg"
-import IconVazao from "@/assets/svgs/icon-vazao.svg"
-import IconNumeroSaidas from "@/assets/svgs/icon-numero-saidas.svg"
-import IconPrecoMedio from "@/assets/svgs/icon-preco-medio.svg"
+import IconPressao from "@/assets/svgs/home/icon-pressao.svg"
+import IconVazao from "@/assets/svgs/home/icon-vazao.svg"
+import IconNumeroSaidas from "@/assets/svgs/home/icon-numero-saidas.svg"
+import IconPrecoMedio from "@/assets/svgs/home/icon-preco-medio.svg"
 
 //Header
 import { provide } from 'vue'
