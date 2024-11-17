@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-caps-1 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 166.667%;
+    letter-spacing: 0.035rem;
+    font-family: Quicksand, sans-serif;
+}
+
 .text-caps-2 {
     font-size: 0.75rem;
     font-weight: 600;

@@ -1,48 +1,21 @@
-import type ChartDataPort from '@/interfaces/chart_data_port';
-import type { ApexOptions } from "apexcharts"
+import type { iTableDataPort } from "@/interfaces/table_data_port";
 
-export default class ChartDataProvider implements ChartDataPort<ApexOptions> {
-  constructor(
-    //private readonly chartOptions: ApexOptions
-  ) { }
+type iDataRowTable = {
+    vazao: number
+    pressao: number
+    preco: number
+}
 
-  getSeries() {
-    return [{
-      name: "Gastos do mês",
-      data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-    }]
-  }
+export default class TableDataProvider implements iTableDataPort<iDataRowTable> {
+    getColumns(){ 
+        return [{
+            name:"a", field:"a", label:"a", 
+        }]
+    };
 
-  getChartOptions(): ApexOptions {
-    const dataTable = {
-      data: {
-        chartOptions: {
-          chart: {
-            height: 350,
-            type: 'line',
-            zoom: {
-              enabled: false
-            }
-          },
-          dataLabels: {
-            enabled: false
-          },
-          stroke: {
-            curve: 'straight'
-          },
-          grid: {
-            row: {
-              colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-              opacity: 0.5
-            },
-          },
-          xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-          }
-        },
-      },
-    } as ApexOptions;
+    getRows() {
+        return [
 
-    return dataTable;
-  }
+        ]
+    }
 }

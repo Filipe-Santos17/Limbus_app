@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import VueApexCharts from "vue3-apexcharts";
-import ChartDataProvider from '@/utils/dataTableProvider';
+import ChartDataProvider from '~/utils/dataChartProvider';
 
 const chartDataProvider = new ChartDataProvider();
 

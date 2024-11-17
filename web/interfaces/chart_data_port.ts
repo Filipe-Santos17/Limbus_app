@@ -1,4 +1,4 @@
-export default interface ChartDataPort<T> {
+export default interface iChartDataPort<T> {
   getSeries(): { name: string; data: number[] }[];
   getChartOptions(): T;
 }

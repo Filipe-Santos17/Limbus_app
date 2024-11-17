@@ -1,5 +1,5 @@
 <template>
-    <div class="card flex flex-col w-full">
+    <div class="card flex flex-col w-full h-full">
         <div class="p-4 pb-3">
             <div class="flex w-full items-center">
                 <p class="text-caps-2 uppercase text-neutral-20">
