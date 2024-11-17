@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import LoginScreen from '@/screens/login.screen.vue';
+import LoginScreen from '@/layouts/login.screen.vue';
 import InputTextLogin from '@/components/login/input_text_login.vue';
 
 export default {

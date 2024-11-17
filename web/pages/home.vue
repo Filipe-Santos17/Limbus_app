@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import ContainerScreen from "@/screens/container.screen.vue";
+import ContainerScreen from "@/layouts/container.screen.vue";
 import CardBoxItem from "@/components/home/card_box_item.vue";
 import ChartComponent from "@/components/Chart.vue";
 import CardComponent from "@/components/Card.vue";
