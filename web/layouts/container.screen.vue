@@ -45,6 +45,7 @@ const sidebarOptions = [
 .content-container{    
     max-width: 1744px;
     padding: 0 40px;
+    background-color: #F8F9FA;
     margin: 0 auto;
 }
 </style>
