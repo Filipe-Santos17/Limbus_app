@@ -1,4 +1,8 @@
-export default interface iChartDataPort<T> {
-  getSeries(): { name: string; data: number[] }[];
-  getChartOptions(): T;
+export interface iSeries {
+  name: string,
+  data: number[]
+}
+
+export interface iChartDataPort<T> {
+  execute(dataChart: ApexOptions, categories: string[]);
 }

@@ -22,3 +22,5 @@ const IncidentsPerMonth = {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
     }
 }
+
+export default IncidentsPerMonth;

@@ -1,5 +1,5 @@
 <template>
-  <NuxtPage class="bg-white-bg" />
+  <NuxtPage />
 </template>
 
 <script setup>
