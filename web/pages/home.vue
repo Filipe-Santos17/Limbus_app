@@ -9,21 +9,18 @@
       <div>
         <hgroup
           class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1">
-          <CardBoxItem 
-            v-for="box in getDataBoxs" 
-            :text-header-card="box.title" 
-            text-main-value="1" 
-            :icon="box.icon"
-            text-footer-card="2" 
-          />
+            <CardBoxItem 
+              v-for="box in getDataBoxs()" 
+              :text-header-card="box.title" 
+              :text-main-value="box.currentData" 
+              :icon="box.icon"
+              :text-footer-card="box.pastData" 
+            />
         </hgroup>
         <section class="flex w-full gap-4 items-center justify-between flex-nowrap md:flex-col mt-4">
           <CardComponent title-card="Indice de gastos por mês">
             <template #content-card>
-              <ChartComponent 
-                type-chart="line"
-                :series-chart="[series]" 
-                :categories="categories"
+              <ChartComponent type-chart="line" :series-chart="[series]" :categories="categories"
                 :options-chart="WaterCostsPerMonth" />
             </template>
           </CardComponent>
@@ -39,12 +36,16 @@
   </ContainerScreen>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import CardBoxItem from "@/components/home/card_box_item.vue";
 import ContainerScreen from "@/layouts/container.screen.vue";
 import ChartComponent from "@/components/Chart.vue";
 import CardComponent from "@/components/Card.vue";
 import TableComponent from "@/components/Table.vue";
+
+import ApiProvider from "@/utils/apiProvider";
+import URLS from "@/utils/urls";
+import type { iDataHomeBoxs } from "@/interfaces/data_home";
 
 //Icons
 import IconPressao from "@/assets/svgs/home/icon-pressao.svg"
@@ -60,25 +61,41 @@ import { provide } from 'vue'
 
 provide('header-title', "home")
 
+//API
+const api = new ApiProvider()
+
 //Boxs
-const getDataBoxs = [
-  {
-    title: "Vazão da água",
-    icon: IconPressao,
-  },
-  {
-    title: "Pressão da água",
-    icon: IconVazao,
-  },
-  {
-    title: "Numero de saídas",
-    icon: IconNumeroSaidas,
-  },
-  {
-    title: "Valor mais alto",
-    icon: IconPrecoMedio,
-  }
-]
+async function getDataBoxs() {
+  const dataBoxs = await api.get(`${URLS.home}id`) as iDataHomeBoxs
+  console.log(dataBoxs)
+
+  return [
+    {
+      title: "Vazão da água",
+      icon: IconPressao,
+      currentData: dataBoxs.WaterFlow.currentMonth,
+      pastData: dataBoxs.WaterFlow.LastMonth,
+    },
+    {
+      title: "Pressão da água",
+      icon: IconVazao,
+      currentData: dataBoxs.WaterPressure.currentMonth,
+      pastData: dataBoxs.WaterPressure.LastMonth,
+    },
+    {
+      title: "Numero de saídas",
+      icon: IconNumeroSaidas,
+      currentData: dataBoxs.numberDevices.currentMonth,
+      pastData: dataBoxs.numberDevices.LastMonth,
+    },
+    {
+      title: "Valor mais alto",
+      icon: IconPrecoMedio,
+      currentData: dataBoxs.OutputWaterPerMinute.currentMonth,
+      pastData: dataBoxs.OutputWaterPerMinute.LastMonth,
+    }
+  ]
+}
 
 //Chart
 const [series] = [
@@ -115,6 +132,13 @@ const columns = [
 ]
 
 const rows = ref([])
+
+function initHome() {
+}
+
+onMounted(() => {
+  window.document.title = "Home"
+})
 </script>
 
 <style scoped></style>
