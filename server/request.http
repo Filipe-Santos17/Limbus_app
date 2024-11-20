@@ -1,0 +1,23 @@
+@PORT=8080
+@URL=http://localhost:{{PORT}}/
+#@token={{@GetSetor.b}}
+
+#@name CadastrarUsuario
+# POST {{URL}}criar-usuario HTTP/1.1
+# content-type: application/json
+
+# {
+#     "nome_usuario": "filipe", 
+#     "email_usuario": "filipe@salvador.ba.gov.br", 
+#     "cargo_usuario": "Estagiário", 
+#     "contato_usuario": "9876", 
+#     "setor_id": "664df949-3392-4f32-857b-b08e16076e9c", 
+#     "aniversario": "2001-08-12",
+#     "senha": "123456"
+# }
+
+###
+
+# @name GetDataHome
+GET {{URL}}home/id HTTP/1.1
+content-type: application/json

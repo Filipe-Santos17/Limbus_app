@@ -3,9 +3,26 @@ import { DBService } from 'utils/db.service';
 
 @Injectable()
 export class HomeService {
-    constructor(private readonly db: DBService){}
+    constructor(private readonly db: DBService) { }
 
-    getDataHome(idResidence: string){
-
+    getDataHomeService(idResidence: string) {
+        return {
+            WaterFlow: {
+                currentMonth: 0,
+                LastMonth: 0
+            },
+            WaterPressure:{
+                currentMonth: 0,
+                LastMonth: 0
+            },
+            numberDevices:{
+                currentMonth: 0,
+                LastMonth: 0
+            },
+            OutputWaterPerMinute:{
+                currentMonth: 0,
+                LastMonth: 0
+            }
+        }
     }
 }
