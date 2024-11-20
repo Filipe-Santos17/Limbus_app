@@ -9,24 +9,31 @@
       <div>
         <hgroup
           class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1">
-            <CardBoxItem 
-              v-for="box in getDataBoxs()" 
-              :text-header-card="box.title" 
-              :text-main-value="box.currentData" 
-              :icon="box.icon"
-              :text-footer-card="box.pastData" 
-            />
+          <CardBoxItem 
+            v-for="box in dataBoxs" 
+            :text-header-card="box.title" 
+            :text-main-value="box.currentData"
+            :icon="box.icon" 
+            :text-footer-card="box.pastData" 
+          />
         </hgroup>
         <section class="flex w-full gap-4 items-center justify-between flex-nowrap md:flex-col mt-4">
           <CardComponent title-card="Indice de gastos por mês">
             <template #content-card>
-              <ChartComponent type-chart="line" :series-chart="[series]" :categories="categories"
-                :options-chart="WaterCostsPerMonth" />
+              <ChartComponent 
+                type-chart="line" 
+                :series-chart="[series]" 
+                :categories="categories"
+                :options-chart="WaterCostsPerMonth" 
+              />
             </template>
           </CardComponent>
           <CardComponent title-card="Valores Gastos por hora">
             <template #content-card>
-              <TableComponent :columns="columns" />
+              <TableComponent 
+                :columns="columns"  
+                :rows="rows"
+              />
             </template>
           </CardComponent>
 
@@ -65,9 +72,10 @@ provide('header-title', "home")
 const api = new ApiProvider()
 
 //Boxs
+const dataBoxs = ref();
+
 async function getDataBoxs() {
   const dataBoxs = await api.get(`${URLS.home}id`) as iDataHomeBoxs
-  console.log(dataBoxs)
 
   return [
     {
@@ -97,7 +105,7 @@ async function getDataBoxs() {
   ]
 }
 
-//Chart
+//Chart - back deve informar as categories e data das series
 const [series] = [
   {
     name: "Gastos do mês",
@@ -131,13 +139,22 @@ const columns = [
   },
 ]
 
-const rows = ref([])
+const rows = ref([
+  {
+    pressMedio: 10,
+    condMedio: 10,
+    hora: 200,
+    preco: 20,
+  }
+])
 
-function initHome() {
+async function initHome() {
+  dataBoxs.value = await getDataBoxs();
 }
 
-onMounted(() => {
+onMounted(async () => {
   window.document.title = "Home"
+  initHome()
 })
 </script>
 

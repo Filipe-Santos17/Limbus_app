@@ -30,16 +30,16 @@ export default defineComponent({
             default: () => '',
         },
         textMainValue: {
-            type: String,
-            default: () => '',
+            type: Number,
+            default: () => 0,
         },
         icon: {
             type: String,
             default: () => '',
         },
         textFooterCard: {
-            type: String,
-            default: () => '',
+            type: Number,
+            default: () => 0,
         },
     },
 })

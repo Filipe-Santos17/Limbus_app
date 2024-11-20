@@ -9,7 +9,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr></tr>
+                <tr 
+                    v-for="line in rows"
+                >
+                    <td>{{ line.pressMedio }}</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -24,6 +28,10 @@ const TableProvider = new TableDataProvider()
 
 defineProps({
     columns: {
+        type:  Object as PropType<typeLinePort[]>,
+        default: () => [],
+    },
+    rows: {
         type:  Object as PropType<typeLinePort[]>,
         default: () => [],
     }
