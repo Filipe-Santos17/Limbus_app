@@ -3,14 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model User {
   id       String @id @default(uuid())
-  name     String 
-  email    String @unique 
+  name     String
+  email    String @unique
   password String
 
   residence Residences[]
@@ -25,7 +25,36 @@ model Residences {
   userId    String   @map("user_id")
   createdAt DateTime @default(now()) @map("created_at")
 
-  user User @relation(fields: [userId], references: [id])
+  user    User      @relation(fields: [userId], references: [id])
+  rooms   Rooms[]
+  Devices Devices[]
 
   @@map("residences")
+}
+
+model Rooms {
+  id          String     @id @default(uuid())
+  nameRoom    String     @map("name_room")
+  residenceId String     @map("residence_id")
+  Residence   Residences @relation(fields: [residenceId], references: [id])
+
+  devices Devices[]
+
+  @@map("rooms")
+}
+
+model Devices {
+  id           String   @id @default(uuid())
+  nameDevice   String   @map("name_device")
+  residenceId  String   @map("residence_id")
+  roomId       String   @map("room_id")
+  health_check Boolean
+  pressure     Float
+  flow         Float
+  time_data    DateTime
+
+  Room      Rooms      @relation(fields: [roomId], references: [id])
+  Residence Residences @relation(fields: [residenceId], references: [id])
+
+  @@map("devices")
 }
