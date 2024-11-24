@@ -8,7 +8,13 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
+import { capitalize, inject } from 'vue'
 
 const title = inject('header-title')
+
+const titleCaptilazed = capitalize(title)
+
+onMounted(async () => {
+  window.document.title = titleCaptilazed
+})
 </script>

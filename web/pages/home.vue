@@ -21,8 +21,8 @@
             <template #content-card>
               <ChartComponent 
                 type-chart="line" 
-                :series-chart="[series]" 
                 :categories="categories"
+                :series-chart="[series]" 
                 :options-chart="WaterCostsPerMonth" 
               />
             </template>
@@ -206,7 +206,6 @@ async function initHome() {
 }
 
 onMounted(async () => {
-  window.document.title = "Home"
   initHome()
 })
 </script>
