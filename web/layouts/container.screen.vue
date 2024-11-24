@@ -1,9 +1,9 @@
 <template>
-    <Sidebar :sidebar-options="sidebarOptions"/>
+    <Sidebar :sidebar-options="sidebarOptions" />
     <section class="page-container">
-        <HeaderComponent/>
+        <HeaderComponent />
         <div class="content-container">
-            <slot name="content"/>
+            <slot name="content" />
         </div>
     </section>
 </template>
@@ -37,15 +37,20 @@ const sidebarOptions = [
 </script>
 
 <style>
-.page-container{
+body{
+    background-color: #F8F9FA;
+}
+
+.page-container {
     margin-left: 5rem;
     height: 100vh;
 }
 
-.content-container{    
+.content-container {
     max-width: 1744px;
     padding: 0 40px;
     background-color: #F8F9FA;
     margin: 0 auto;
+    height: calc(100vh - 2.5rem);
 }
 </style>

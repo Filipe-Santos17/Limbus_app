@@ -1,7 +1,12 @@
 <template>
     <ClientOnly>
         <div id="chart">
-            <VueApexCharts :type="typeChart" height="350" :options="tableData" :series="seriesChart" />
+            <VueApexCharts 
+                height="300" 
+                :type="typeChart" 
+                :options="tableData" 
+                :series="seriesChart" 
+            />
         </div>
     </ClientOnly>
 </template>
@@ -12,7 +17,6 @@ import ChartDataProvider from '@/utils/dataChartProvider';
 import type { iSeries } from "@/interfaces/chart_data_port";
 import type { ApexOptions } from "apexcharts"
 
-
 const { optionsChart, categories } = defineProps({
     typeChart: {
         type: String,
@@ -21,7 +25,7 @@ const { optionsChart, categories } = defineProps({
     seriesChart: {
         type: Array<iSeries>,
         required: true,
-        default: () => { }
+        default: () => {}
     },
     categories:{
         type: Array<string>,

@@ -7,8 +7,7 @@
         </h2>
       </hgroup>
       <div>
-        <hgroup
-          class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1">
+        <hgroup class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1">
           <CardBoxItem 
             v-for="box in dataBoxs" 
             :text-header-card="box.title" 
@@ -17,7 +16,7 @@
             :text-footer-card="box.pastData" 
           />
         </hgroup>
-        <section class="flex w-full gap-4 items-center justify-between flex-nowrap md:flex-col mt-4">
+        <section class="flex w-full gap-4 md:flex-col mt-4">
           <CardComponent title-card="Indice de gastos por mês">
             <template #content-card>
               <ChartComponent 
@@ -31,12 +30,11 @@
           <CardComponent title-card="Valores Gastos por hora">
             <template #content-card>
               <TableComponent 
-                :columns="columns"  
-                :rows="rows"
+                :columns="columns" 
+                :rows="rows" 
               />
             </template>
           </CardComponent>
-
         </section>
       </div>
     </template>
@@ -72,7 +70,32 @@ provide('header-title', "home")
 const api = new ApiProvider()
 
 //Boxs
-const dataBoxs = ref();
+const dataBoxs = ref([
+  {
+    title: "Vazão da água",
+    icon: IconPressao,
+    currentData: 0,
+    pastData: 0,
+  },
+  {
+    title: "Pressão da água",
+    icon: IconVazao,
+    currentData: 0,
+    pastData: 0,
+  },
+  {
+    title: "Numero de saídas",
+    icon: IconNumeroSaidas,
+    currentData: 0,
+    pastData: 0,
+  },
+  {
+    title: "Valor mais alto",
+    icon: IconPrecoMedio,
+    currentData: 0,
+    pastData: 0,
+  }
+]);
 
 async function getDataBoxs() {
   const dataBoxs = await api.get(`${URLS.home}id`) as iDataHomeBoxs
@@ -145,7 +168,37 @@ const rows = ref([
     condMedio: 10,
     hora: 200,
     preco: 20,
-  }
+  },
+  {
+    pressMedio: 10,
+    condMedio: 10,
+    hora: 200,
+    preco: 20,
+  },
+  {
+    pressMedio: 10,
+    condMedio: 10,
+    hora: 200,
+    preco: 20,
+  },
+  {
+    pressMedio: 10,
+    condMedio: 10,
+    hora: 200,
+    preco: 20,
+  },
+  {
+    pressMedio: 10,
+    condMedio: 10,
+    hora: 200,
+    preco: 20,
+  },
+  {
+    pressMedio: 10,
+    condMedio: 10,
+    hora: 200,
+    preco: 20,
+  },
 ])
 
 async function initHome() {

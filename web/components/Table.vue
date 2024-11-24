@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table class="pt-4 pb-6 px-3 border rounded-md border-neutral-100 w-full h-full">
+        <table class="mt-4 px-3 border rounded-md border-neutral-100 w-full h-full overflow-auto max-h-full">
             <thead>
                 <tr>
                     <th v-for="column in columns" :name="column.field">
@@ -9,10 +9,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr 
-                    v-for="line in rows"
-                >
+                <tr v-for="line in rows">
                     <td>{{ line.pressMedio }}</td>
+                    <td>{{ line.condMedio }}</td>
+                    <td>{{ line.hora }}</td>
+                    <td>{{ line.preco }}</td>
                 </tr>
             </tbody>
         </table>
@@ -20,11 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import TableDataProvider from "@/utils/dataTableProvider"
-import type { typeLinePort } from "@/interfaces/table_data_port";
+import type { typeLinePort, typeRowTablePort } from "@/interfaces/table_data_port";
 import type { PropType } from "vue";
-
-const TableProvider = new TableDataProvider()
 
 defineProps({
     columns: {
@@ -32,7 +30,7 @@ defineProps({
         default: () => [],
     },
     rows: {
-        type:  Object as PropType<typeLinePort[]>,
+        type:  Array<typeRowTablePort>,
         default: () => [],
     }
 })
@@ -42,5 +40,9 @@ defineProps({
 table th {
     @apply text-black-20 text-sm not-italic font-semibold leading-5 tracking-[-0.28px];
     font-family: Quicksand;
+}
+
+table th,td{
+    @apply border text-center;
 }
 </style>

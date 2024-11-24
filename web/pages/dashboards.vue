@@ -1,9 +1,9 @@
 <template>
   <ContainerScreen>
     <template #content>
-      <div>
-        <section class="container-charts">
-          <CardComponent title-card="Gastos de Água por mês" class="mt-4">
+      <div class="h-[calc(100vh-2.5rem)] grid grid-rows-2 md:h-full">
+        <section class="container-charts py-4">
+          <CardComponent title-card="Gastos de Água por mês">
             <template #content-card>
               <ChartComponent 
                 type-chart="line"
@@ -24,27 +24,50 @@
             </template>
           </CardComponent>
         </section>
-        <section class="container-charts">
+        <section class="container-charts pb-4">
           <CardComponent title-card="Gastos de Água por mês">
             <template #content-card>
               <ChartComponent 
                 type-chart="donut"
                 :categories="categories"
-                :series-chart="[series3]" 
+                :series-chart="[10,20,3]" 
                 :options-chart="EquipmentsWorking" 
               />
             </template>
           </CardComponent>
-          <CardComponent title-card="Número de incidentes por mês">
+          <CardComponent title-card="Horário de maior gasto">
             <template #content-card>
-              <!-- <ChartComponent /> -->
+              <ChartComponent 
+                type-chart="bar"
+                :categories="categories"
+                :series-chart="[series]" 
+                :options-chart="PeakSpendingTime" 
+              />
             </template>
           </CardComponent>
-          <CardComponent title-card="Número de incidentes por mês">
-            <template #content-card>
-              <!-- <ChartComponent /> -->
-            </template>
-          </CardComponent>
+          <div class="min-w-[300px] flex flex-col mb-auto md:flex-row md:w-full gap-2">
+            <CardComponent title-card="Pressão médio">
+              <template #content-card>
+                <p class="text-title-2 text-yellow-limbus-dark">
+                  {{  10 }} 
+                </p>
+              </template>
+            </CardComponent>
+            <CardComponent title-card="Vazão média">
+              <template #content-card>
+                <p class="text-title-2 text-yellow-limbus-dark">
+                  {{  10 }} 
+                </p>
+              </template>
+            </CardComponent>
+            <CardComponent title-card="Preço médio">
+              <template #content-card>
+                <p class="text-title-2 text-yellow-limbus-dark">
+                  {{  10 }} 
+                </p>
+              </template>
+            </CardComponent>
+          </div>
         </section>
       </div>
     </template>
@@ -65,6 +88,9 @@ import IncidentsPerMonth from "@/utils/models/model_chart_incidents per month";
 
 //Chart 3
 import EquipmentsWorking from "@/utils/models/model_chart_equipment_working";
+
+//Chart 4
+import PeakSpendingTime from "@/utils/models/model_chart_peak_spending_time";
 
 //Header
 import { provide } from 'vue'
