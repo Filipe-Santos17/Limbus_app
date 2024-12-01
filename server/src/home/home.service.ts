@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { DBService } from 'utils/db.service';
+//import { DBService } from 'utils/db.service';
 
 @Injectable()
 export class HomeService {
-    constructor(private readonly db: DBService) { }
+    constructor(/*private readonly db: DBService*/) { }
 
     getDataHomeService(idResidence: string) {
         return {
@@ -24,5 +24,10 @@ export class HomeService {
                 LastMonth: 0
             }
         }
+    }
+
+    test(body: any){
+        console.log(body)
+        return { msg: "enviado com sucesso"}
     }
 }
