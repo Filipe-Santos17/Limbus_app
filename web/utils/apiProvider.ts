@@ -7,7 +7,7 @@ export default class ApiProvider {
 
     constructor() {
         this.apiMessager = new FetchApiMessager()
-        this.baseUrl = process.env.NODE_ENV === "production" ? "" : "http://localhost:8000/"; // Defina a URL base
+        this.baseUrl = process.env.NODE_ENV === "production" ? "http://54.233.178.23:8000" : "http://localhost:8000/"; // Defina a URL base
         this.headers = {
             Authorization: `Bearer ${"aa"}`, //Cookies.get('NDT_TOKEN')
         };
