@@ -11,7 +11,12 @@ export class HomeController {
     }
 
     @Post()
-    justTest(@Body() body: any) {
-        return this.homeServices.test(body)
+    async postDataVazaoPressao(@Body() body: any) {
+        return await this.homeServices.postDataApi(body)
+    }
+
+    @Get()
+    async getDataVazaoPressao() {
+        return await this.homeServices.getDataApi()
     }
 }

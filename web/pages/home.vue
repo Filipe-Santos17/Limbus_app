@@ -50,7 +50,7 @@ import TableComponent from "@/components/Table.vue";
 
 import ApiProvider from "@/utils/apiProvider";
 import URLS from "@/utils/urls";
-import type { iDataHomeBoxs } from "@/interfaces/data_home";
+import type { iDataHomeBoxs, iDataTable } from "@/interfaces/data_home";
 
 //Icons
 import IconPressao from "@/assets/svgs/home/icon-pressao.svg"
@@ -63,6 +63,7 @@ import WaterCostsPerMonth from "@/utils/models/model_chart_water_costs_per_month
 
 //Header
 import { provide } from 'vue'
+import type { typeRowTablePort } from "~/interfaces/table_data_port";
 
 provide('header-title', "home")
 
@@ -155,54 +156,28 @@ const columns = [
     field: "hora",
     label: "Hora",
   },
-  {
-    name: "Preço Médio",
-    field: "preco",
-    label: "Preço Médio",
-  },
+  // {
+  //   name: "Preço Médio",
+  //   field: "preco",
+  //   label: "Preço Médio",
+  // },
 ]
 
-const rows = ref([
-  {
-    pressMedio: 10,
-    condMedio: 10,
-    hora: 200,
-    preco: 20,
-  },
-  {
-    pressMedio: 10,
-    condMedio: 10,
-    hora: 200,
-    preco: 20,
-  },
-  {
-    pressMedio: 10,
-    condMedio: 10,
-    hora: 200,
-    preco: 20,
-  },
-  {
-    pressMedio: 10,
-    condMedio: 10,
-    hora: 200,
-    preco: 20,
-  },
-  {
-    pressMedio: 10,
-    condMedio: 10,
-    hora: 200,
-    preco: 20,
-  },
-  {
-    pressMedio: 10,
-    condMedio: 10,
-    hora: 200,
-    preco: 20,
-  },
-])
+async function getDataTable(){
+  const dataTable = await api.get(`${URLS.home}`) as typeRowTablePort[]
+
+  rows.value = dataTable
+}
+
+const rows = ref<typeRowTablePort[]>([])
 
 async function initHome() {
   dataBoxs.value = await getDataBoxs();
+  await getDataTable();
+
+  setInterval(async () => {
+    await getDataTable();
+  }, 7_500)
 }
 
 onMounted(async () => {

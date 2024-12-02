@@ -7,54 +7,61 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
+// model User {
+//   id       String @id @default(uuid())
+//   name     String
+//   email    String @unique
+//   password String
 
-  residence Residences[]
+//   residence Residences[]
 
-  @@map("users")
-}
+//   @@map("users")
+// }
 
-model Residences {
-  id        String   @id @default(uuid())
-  name      String
-  adress    String
-  userId    String   @map("user_id")
-  createdAt DateTime @default(now()) @map("created_at")
+// model Residences {
+//   id        String   @id @default(uuid())
+//   name      String
+//   adress    String
+//   userId    String   @map("user_id")
+//   createdAt DateTime @default(now()) @map("created_at")
 
-  user    User      @relation(fields: [userId], references: [id])
-  rooms   Rooms[]
-  Devices Devices[]
+//   user    User      @relation(fields: [userId], references: [id])
+//   rooms   Rooms[]
+//   Devices Devices[]
 
-  @@map("residences")
-}
+//   @@map("residences")
+// }
 
-model Rooms {
-  id          String     @id @default(uuid())
-  nameRoom    String     @map("name_room")
-  residenceId String     @map("residence_id")
-  Residence   Residences @relation(fields: [residenceId], references: [id])
+// model Rooms {
+//   id          String     @id @default(uuid())
+//   nameRoom    String     @map("name_room")
+//   residenceId String     @map("residence_id")
+//   Residence   Residences @relation(fields: [residenceId], references: [id])
 
-  devices Devices[]
+//   devices Devices[]
 
-  @@map("rooms")
-}
+//   @@map("rooms")
+// }
 
-model Devices {
-  id           String   @id @default(uuid())
-  nameDevice   String   @map("name_device")
-  residenceId  String   @map("residence_id")
-  roomId       String   @map("room_id")
-  health_check Boolean
-  pressure     Float
-  flow         Float
-  time_data    DateTime
+// model Devices {
+//   id           String   @id @default(uuid())
+//   nameDevice   String   @map("name_device")
+//   residenceId  String   @map("residence_id")
+//   roomId       String   @map("room_id")
+//   health_check Boolean
+//   pressure     Float
+//   flow         Float
+//   time_data    DateTime
 
-  Room      Rooms      @relation(fields: [roomId], references: [id])
-  Residence Residences @relation(fields: [residenceId], references: [id])
+//   Room      Rooms      @relation(fields: [roomId], references: [id])
+//   Residence Residences @relation(fields: [residenceId], references: [id])
 
-  @@map("devices")
+//   @@map("devices")
+// }
+
+model DataDevice {
+  id      Int   @id @default(autoincrement())
+  pressao Float
+  vazao   Float
+  data    DateTime
 }

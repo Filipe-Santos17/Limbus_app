@@ -1,9 +1,15 @@
 import { Injectable } from '@nestjs/common';
-//import { DBService } from 'utils/db.service';
+import { DBService } from 'utils/db.service';
+import { NotFoundException } from '@nestjs/common';
+
+interface iDataVazPre {
+    vazao: number
+    pressao: number
+}
 
 @Injectable()
 export class HomeService {
-    constructor(/*private readonly db: DBService*/) { }
+    constructor(private readonly db: DBService) { }
 
     getDataHomeService(idResidence: string) {
         return {
@@ -11,23 +17,42 @@ export class HomeService {
                 currentMonth: 0,
                 LastMonth: 0
             },
-            WaterPressure:{
+            WaterPressure: {
                 currentMonth: 0,
                 LastMonth: 0
             },
-            numberDevices:{
+            numberDevices: {
                 currentMonth: 0,
                 LastMonth: 0
             },
-            OutputWaterPerMinute:{
+            OutputWaterPerMinute: {
                 currentMonth: 0,
                 LastMonth: 0
             }
         }
     }
 
-    test(body: any){
-        console.log(body)
-        return { msg: "enviado com sucesso"}
+    async getDataApi() {
+        const data = await this.db.dataDevice.findMany()
+
+        return data
+    }
+
+    async postDataApi(body: iDataVazPre) {
+        try {
+
+            await this.db.dataDevice.create({
+                data: {
+                    vazao: body.vazao,
+                    pressao: body.pressao,
+                    data: new Date()
+                }
+            })
+
+            return { msg: "enviado com sucesso" }
+        } catch (e) {
+            console.error(e)
+            throw new NotFoundException('Data não enviado ao banco') 
+        }
     }
 }

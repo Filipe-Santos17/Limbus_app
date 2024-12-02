@@ -5,9 +5,9 @@ export type typeLinePort = {
 }
 
 export type typeRowTablePort = {
-    pressMedio: number,
-    condMedio: number,
-    hora: number,
+    pressao: number,
+    vazao: number,
+    data: Date,
     preco: number,
 }
 

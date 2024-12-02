@@ -10,10 +10,10 @@
             </thead>
             <tbody>
                 <tr v-for="line in rows">
-                    <td>{{ line.pressMedio }}</td>
-                    <td>{{ line.condMedio }}</td>
-                    <td>{{ line.hora }}</td>
-                    <td>{{ line.preco }}</td>
+                    <td>{{ line.pressao }}</td>
+                    <td>{{ line.vazao }}</td>
+                    <td>{{ convertDateTime(line.data) }}</td>
+                    <!-- <td>{{ line.preco }}</td> -->
                 </tr>
             </tbody>
         </table>
@@ -23,6 +23,10 @@
 <script setup lang="ts">
 import type { typeLinePort, typeRowTablePort } from "@/interfaces/table_data_port";
 import type { PropType } from "vue";
+
+function convertDateTime(date: Date){
+    return new Date(date).toISOString().split("T")[1].split(".")[0]
+}
 
 defineProps({
     columns: {
