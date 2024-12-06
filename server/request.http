@@ -1,5 +1,5 @@
 @PORT=8000
-@URL=http://localhost:{{PORT}}/
+@URL=http://18.231.161.105:8080/
 #@token={{@GetSetor.b}}
 
 #@name CadastrarUsuario

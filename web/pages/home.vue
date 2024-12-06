@@ -157,7 +157,10 @@ const columns = [
 ]
 
 async function getDataTableChart() {
+console.log("foi")
   const dataTable = await api.get(`${URLS.home}`) as typeRowTablePort[]
+
+  console.log("foi 2")
 
   const lastOneHundredItems = dataTable.slice(-100)
   const lastValues = lastOneHundredItems.map(i => i.pressao)
@@ -169,7 +172,8 @@ async function getDataTableChart() {
 const rows = ref<typeRowTablePort[]>([])
 
 async function initHome() {
-  dataBoxs.value = await getDataBoxs();
+  debugger
+  //dataBoxs.value = await getDataBoxs();
   await getDataTableChart();
 
   setInterval(async () => {
