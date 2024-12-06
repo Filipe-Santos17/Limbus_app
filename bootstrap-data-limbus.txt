@@ -1,0 +1,17 @@
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+sudo yum install git
+git clone https://github.com/Filipe-Santos17/Limbus_app
+cd Limbus_app/server/
+npm i 
+npm i -g pm2
+npm i -g bun
+
+pm2 start src/main.ts --name=nest_back
+
+pm2 start npm --name=nuxt_front -- run dev
+pm2 start node --name=nuxt_front -- .output/server/index.mjs
+
+sudo lsof -i :8000
+sudo kill -9 29158

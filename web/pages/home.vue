@@ -1,38 +1,29 @@
 <template>
   <ContainerScreen>
     <template #content>
-      <hgroup class="py-6">
-        <h2 class="text-caps-1 uppercase">
-          Bem vindo de volta, <span class="text-[#b05b00]">filipe</span>!
-        </h2>
-      </hgroup>
+      <div class="flex items-center justify-between sm:flex-col">
+        <hgroup class="py-6">
+          <h2 class="text-caps-1 uppercase">
+            Bem vindo de volta, <span class="text-[#b05b00]">filipe</span>!
+          </h2>
+        </hgroup>
+        <ButtonComponent text="Baixar Relatórios" @click="handleClickBtnReport" class="bg-yellow-limbus-dark" />
+      </div>
       <div>
-        <hgroup class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1">
-          <CardBoxItem 
-            v-for="box in dataBoxs" 
-            :text-header-card="box.title" 
-            :text-main-value="box.currentData"
-            :icon="box.icon" 
-            :text-footer-card="box.pastData" 
-          />
+        <hgroup
+          class="flex w-full gap-4 items-center justify-between flex-nowrap md:grid md:grid-cols-2 sm:!grid-cols-1">
+          <CardBoxItem v-for="box in dataBoxs" :text-header-card="box.title" :text-main-value="box.currentData" :icon="box.icon" :text-footer-card="box.pastData" />
         </hgroup>
         <section class="flex w-full gap-4 md:flex-col mt-4">
-          <CardComponent title-card="Indice de gastos por mês">
+          <CardComponent title-card="Valor da pressão">
             <template #content-card>
-              <ChartComponent 
-                type-chart="line" 
-                :categories="categories"
-                :series-chart="[series]" 
-                :options-chart="WaterCostsPerMonth" 
-              />
+              <ChartComponent type-chart="line" :categories="['a']" :series-chart="[series]"
+                :options-chart="WaterCostsPerMonth" />
             </template>
           </CardComponent>
-          <CardComponent title-card="Valores Gastos por hora">
+          <CardComponent title-card="Valores Gastos por hora" class="box-hide">
             <template #content-card>
-              <TableComponent 
-                :columns="columns" 
-                :rows="rows" 
-              />
+              <TableComponent :columns="columns" :rows="rows" class="table-hide" />
             </template>
           </CardComponent>
         </section>
@@ -47,10 +38,11 @@ import ContainerScreen from "@/layouts/container.screen.vue";
 import ChartComponent from "@/components/Chart.vue";
 import CardComponent from "@/components/Card.vue";
 import TableComponent from "@/components/Table.vue";
+import ButtonComponent from "@/components/Button.vue"
 
 import ApiProvider from "@/utils/apiProvider";
 import URLS from "@/utils/urls";
-import type { iDataHomeBoxs, iDataTable } from "@/interfaces/data_home";
+import type { iDataHomeBoxs } from "@/interfaces/data_home";
 
 //Icons
 import IconPressao from "@/assets/svgs/home/icon-pressao.svg"
@@ -69,6 +61,11 @@ provide('header-title', "home")
 
 //API
 const api = new ApiProvider()
+
+//Btn Relatorio
+function handleClickBtnReport(){
+  window.print()
+}
 
 //Boxs
 const dataBoxs = ref([
@@ -130,26 +127,22 @@ async function getDataBoxs() {
 }
 
 //Chart - back deve informar as categories e data das series
-const [series] = [
-  {
-    name: "Gastos do mês",
-    data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-  }
-]
-
-const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+const series = ref({
+  name: "Valor da pressão",
+  data: [10]
+})
 
 //Tabela
 const columns = [
   {
     name: "Pressão Média",
     field: "presMedio",
-    label: "Pressão Média",
+    label: "Pressão Média(Psi)",
   },
   {
     name: "Vazão Média",
     field: "condMedio",
-    label: "Vazão Média",
+    label: "Vazão Média(Litros p/min)",
   },
   {
     name: "Hora",
@@ -163,21 +156,25 @@ const columns = [
   // },
 ]
 
-async function getDataTable(){
+async function getDataTableChart() {
   const dataTable = await api.get(`${URLS.home}`) as typeRowTablePort[]
 
-  rows.value = dataTable
+  const lastOneHundredItems = dataTable.slice(-100)
+  const lastValues = lastOneHundredItems.map(i => i.pressao)
+
+  series.value.data = lastValues
+  rows.value = lastOneHundredItems
 }
 
 const rows = ref<typeRowTablePort[]>([])
 
 async function initHome() {
   dataBoxs.value = await getDataBoxs();
-  await getDataTable();
+  await getDataTableChart();
 
   setInterval(async () => {
-    await getDataTable();
-  }, 7_500)
+    await getDataTableChart();
+  }, 3000)
 }
 
 onMounted(async () => {
@@ -185,4 +182,19 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.box-hide{
+  @apply h-[22.5rem] overflow-hidden;
+}
+
+.box-hide .table-hide{
+  @apply max-h-[19rem] overflow-auto;
+}
+
+@media print {
+  .box-hide, .table-hide{
+    overflow: visible;
+    max-height: 100%;
+  }
+}
+</style>

@@ -18,6 +18,6 @@ const WaterCostsPerMonth = {
       opacity: 0.5
     },
   },
-} 
+}
 
 export default WaterCostsPerMonth;

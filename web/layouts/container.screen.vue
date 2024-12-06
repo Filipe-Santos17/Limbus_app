@@ -15,7 +15,7 @@ import HeaderComponent from "@/components/Header.vue";
 //Icons
 import IconHome from "@/assets/svgs/sidebar/icon-home.svg"
 import IconDash from "@/assets/svgs/sidebar/icon-dashboard.svg"
-import IconUser from "@/assets/svgs/sidebar/icon-user.svg"
+//import IconUser from "@/assets/svgs/sidebar/icon-user.svg"
 
 const sidebarOptions = [
     {
@@ -28,11 +28,11 @@ const sidebarOptions = [
         link: "dashboards",
         img: IconDash
     },
-    {
-        text: "Users",
-        link: "users",
-        img: IconUser
-    }
+    // {
+    //     text: "Users",
+    //     link: "users",
+    //     img: IconUser
+    // }
 ]
 </script>
 

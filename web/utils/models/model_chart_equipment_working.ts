@@ -6,6 +6,8 @@ const EquipmentsWorking = {
             offsetY: 10
         }
     },
+    labels:['Ativos', 'Inativos/Mal Contato'],
+    colors:["#6DE497","#F04E5E"],
     grid: {
         padding: {
             bottom: -80

@@ -5,65 +5,49 @@
         <section class="container-charts py-4">
           <CardComponent title-card="Gastos de Água por mês">
             <template #content-card>
-              <ChartComponent 
-                type-chart="line"
-                :categories="categories"
-                :series-chart="[series]" 
-                :options-chart="WaterCostsPerMonth" 
-              />
+              <ChartComponent type-chart="line" :categories="categories" :series-chart="[seriesContaDeLuz]"
+                :options-chart="WaterCostsPerMonth" />
             </template>
           </CardComponent>
           <CardComponent title-card="Número de incidentes por mês">
             <template #content-card>
-              <ChartComponent 
-                type-chart="bar" 
-                :categories="categories"
-                :series-chart="[series]"
-                :options-chart="IncidentsPerMonth" 
-              />
+              <ChartComponent type-chart="bar" :categories="categories" :series-chart="[seriesIncidentesPorMes]"
+                :options-chart="IncidentsPerMonth" />
             </template>
           </CardComponent>
         </section>
         <section class="container-charts pb-4">
           <CardComponent title-card="Gastos de Água por mês">
             <template #content-card>
-              <ChartComponent 
-                type-chart="donut"
-                :categories="categories"
-                :series-chart="[10,20,3]" 
-                :options-chart="EquipmentsWorking" 
-              />
+              <ChartComponent type-chart="donut" :categories="[]" :series-chart="[4, 1]"
+                :options-chart="EquipmentsWorking" />
             </template>
           </CardComponent>
           <CardComponent title-card="Horário de maior gasto">
             <template #content-card>
-              <ChartComponent 
-                type-chart="bar"
-                :categories="categories"
-                :series-chart="[series]" 
-                :options-chart="PeakSpendingTime" 
-              />
+              <ChartComponent type-chart="bar" :categories="categoriesHorarios"
+                :series-chart="[seriesHorariosMaiorGastos]" :options-chart="PeakSpendingTime" />
             </template>
           </CardComponent>
           <div class="min-w-[300px] flex flex-col mb-auto md:flex-row md:w-full gap-2">
             <CardComponent title-card="Pressão médio">
               <template #content-card>
                 <p class="text-title-2 text-yellow-limbus-dark">
-                  {{  10 }} 
+                  {{ 10 }}
                 </p>
               </template>
             </CardComponent>
             <CardComponent title-card="Vazão média">
               <template #content-card>
                 <p class="text-title-2 text-yellow-limbus-dark">
-                  {{  10 }} 
+                  {{ 10 }}
                 </p>
               </template>
             </CardComponent>
             <CardComponent title-card="Preço médio">
               <template #content-card>
                 <p class="text-title-2 text-yellow-limbus-dark">
-                  {{  10 }} 
+                  {{ 10 }}
                 </p>
               </template>
             </CardComponent>
@@ -97,29 +81,40 @@ import { provide } from 'vue'
 
 provide('header-title', "dashboards")
 
-//Chart 1
 const api = new ApiProvider()
-const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
-
 
 //Charts
-const [series] = [
+const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Out', 'Nov', 'Dez']
+
+const categoriesHorarios = Array.from({ length: 24 }, (_, i) => {
+  const hour = i.toString().padStart(2, '0');
+  return `${hour}:00`;
+});
+
+
+
+//Charts 1
+const [seriesContaDeLuz] = [
   {
-    name: "Gastos do mês",
-    data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+    name: "Número de incidentes por mês",
+    data: [423, 297, 365, 386, 416, 275, 483, 375, 280, 441, 298, 315]
   }
 ]
 
-const series3 = [{
-  name: "Equipamentos",
-  data: [44, 55, 41, 17, 15]
-}]
-   
+//Charts 2
+const [seriesIncidentesPorMes] = [
+  {
+    name: "Gastos de Água por mês",
+    data: [10, 11, 15, 10, 21, 12, 19, 9, 14, 7, 5, 4]
+  }
+]
 
-// const aaa = await api.get({user})
-// console.log(aaa)
-
-
+const [seriesHorariosMaiorGastos] = [
+  {
+    name: "Gastos de Água por mês",
+    data: [1, 0, 0, 0, 0, 0, 0, 0, 0, 10, 9, 14, 7, 5, 4]
+  }
+]
 </script>
 
 <style scoped>

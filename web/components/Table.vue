@@ -1,7 +1,7 @@
 <template>
     <div>
-        <table class="mt-4 px-3 border rounded-md border-neutral-100 w-full h-full overflow-auto max-h-full">
-            <thead>
+        <table class="mt-4 px-3 border rounded-md border-neutral-100 w-full h-full overflow-auto max-h-full relative">
+            <thead class="sticky">
                 <tr>
                     <th v-for="column in columns" :name="column.field">
                         {{ column.label }}
