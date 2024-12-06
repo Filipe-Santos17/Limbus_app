@@ -72,26 +72,26 @@ const dataBoxs = ref([
   {
     title: "Vazão da água",
     icon: IconPressao,
-    currentData: 0,
-    pastData: 0,
+    currentData: 10.91,
+    pastData: 10.18,
   },
   {
     title: "Pressão da água",
     icon: IconVazao,
-    currentData: 0,
-    pastData: 0,
+    currentData: 0.0056533312,
+    pastData: 0.00589311312,
   },
   {
     title: "Numero de saídas",
     icon: IconNumeroSaidas,
-    currentData: 0,
-    pastData: 0,
+    currentData: 1,
+    pastData: 1,
   },
   {
     title: "Valor mais alto",
     icon: IconPrecoMedio,
-    currentData: 0,
-    pastData: 0,
+    currentData: 1,
+    pastData: 0.3,
   }
 ]);
 
@@ -157,10 +157,7 @@ const columns = [
 ]
 
 async function getDataTableChart() {
-console.log("foi")
   const dataTable = await api.get(`${URLS.home}`) as typeRowTablePort[]
-
-  console.log("foi 2")
 
   const lastOneHundredItems = dataTable.slice(-100)
   const lastValues = lastOneHundredItems.map(i => i.pressao)
@@ -172,7 +169,6 @@ console.log("foi")
 const rows = ref<typeRowTablePort[]>([])
 
 async function initHome() {
-  debugger
   //dataBoxs.value = await getDataBoxs();
   await getDataTableChart();
 
@@ -197,8 +193,7 @@ onMounted(async () => {
 
 @media print {
   .box-hide, .table-hide{
-    overflow: visible;
-    max-height: 100%;
+    overflow: visible !important;
   }
 }
 </style>

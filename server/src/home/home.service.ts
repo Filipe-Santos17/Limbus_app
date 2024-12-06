@@ -40,7 +40,7 @@ export class HomeService {
 
     async postDataApi(body: iDataVazPre) {
         try {
-
+            console.log(body)
             await this.db.dataDevice.create({
                 data: {
                     vazao: body.vazao,

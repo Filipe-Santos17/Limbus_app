@@ -33,21 +33,21 @@
             <CardComponent title-card="Pressão médio">
               <template #content-card>
                 <p class="text-title-2 text-yellow-limbus-dark">
-                  {{ 10 }}
+                  0.006625
                 </p>
               </template>
             </CardComponent>
             <CardComponent title-card="Vazão média">
               <template #content-card>
                 <p class="text-title-2 text-yellow-limbus-dark">
-                  {{ 10 }}
+                  0.006534
                 </p>
               </template>
             </CardComponent>
             <CardComponent title-card="Preço médio">
               <template #content-card>
                 <p class="text-title-2 text-yellow-limbus-dark">
-                  {{ 10 }}
+                  1
                 </p>
               </template>
             </CardComponent>
