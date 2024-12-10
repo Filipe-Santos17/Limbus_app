@@ -1,28 +1,5 @@
 @PORT=8000
 @URL=http://18.231.62.156:8000/
-#@token={{@GetSetor.b}}
-
-#@name CadastrarUsuario
-# POST {{URL}}criar-usuario HTTP/1.1
-# content-type: application/json
-
-# {
-#     "nome_usuario": "filipe", 
-#     "email_usuario": "filipe@salvador.ba.gov.br", 
-#     "cargo_usuario": "Estagiário", 
-#     "contato_usuario": "9876", 
-#     "setor_id": "664df949-3392-4f32-857b-b08e16076e9c", 
-#     "aniversario": "2001-08-12",
-#     "senha": "123456"
-# }
-
-###
-
-# @name GetDataHome
-GET {{URL}}home/id HTTP/1.1
-content-type: application/json
-
-###
 
 # @name PostDataVP
 POST  {{URL}}home HTTP/1.1
@@ -36,5 +13,11 @@ content-type: application/json
 ###
 
 # @name GetDataVP
-GET  {{URL}}home HTTP/1.1
+GET {{URL}}home HTTP/1.1
+content-type: application/json
+
+###
+
+# @name DeleteDataVP
+DELETE {{URL}}home/10707 HTTP/1.1
 content-type: application/json

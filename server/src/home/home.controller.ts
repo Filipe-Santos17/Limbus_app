@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { HomeService } from './home.service';
 
 @Controller('home')
@@ -19,5 +19,10 @@ export class HomeController {
     @Get()
     async getDataVazaoPressao() {
         return await this.homeServices.getDataApi()
+    }
+
+    @Delete(":id")
+    async deleteDataVazaoPressao(@Param() { id } : { id:number }) {
+        return await this.homeServices.deleteDataApi(id)
     }
 }

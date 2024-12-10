@@ -55,4 +55,23 @@ export class HomeService {
             throw new NotFoundException('Data não enviado ao banco') 
         }
     }
+
+    async deleteDataApi(id: number){
+        const idNumber = +id
+
+        if(isNaN(idNumber)) throw new Error("Dado não é um numero")
+
+        try {
+            await this.db.dataDevice.delete({
+                where:{
+                    id: idNumber
+                }
+            })
+
+            return { msg: "deletado com sucesso" }
+        } catch (e) {
+            console.error(e)
+            throw new NotFoundException(`${e}`) 
+        }
+    }
 }
