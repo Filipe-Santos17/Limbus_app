@@ -7,7 +7,7 @@ export default class ApiProvider {
 
     constructor() {
         this.apiMessager = new FetchApiMessager()
-        this.baseUrl = "http://18.231.62.156:8000/"; // Defina a URL base
+        this.baseUrl = "http://15.228.58.1:8000/"; // Defina a URL base
         this.headers = {
             Authorization: `Bearer ${"aa"}`, //Cookies.get('NDT_TOKEN')
         };
